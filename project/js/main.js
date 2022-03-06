@@ -8,21 +8,27 @@
 //   
 // }
 
-$(document).ready(function(){
+$(document).ready(function() {
   getWeather("Paris");
 })
 
-function getWeather(searchQuery){
-    var url = "https://api.openweathermap.org/data/2.5/weather?q="+searchQuery+"&units=metric&appid="+apiKey;
-    $.ajax(url,{success:function(data){
+function getWeather(searchQuery) {
+  var url = "https://api.openweathermap.org/data/2.5/weather?q=" + searchQuery + "&units=metric&appid=" + apiKey;
+  $(".oups").text("");
+  $.ajax(url, {
+    success: function(data) {
       console.log(data);
       $(".city").text(data.name);
       $(".temp").text(data.main.temp);
       $(".feels").text(data.main.feels_like);
-    }})
+    },
+    error: function(data) {
+      $(".oups").text("An Error Occurred");
+    }
+  })
 }
 
-function searchWeather(){
-  var searchQuery=$(".search").val();
+function searchWeather() {
+  var searchQuery = $(".search").val();
   getWeather(searchQuery)
 }
