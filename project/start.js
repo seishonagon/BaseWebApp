@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 5678));
 
 app.use(express.static(__dirname));
 
@@ -11,6 +11,14 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
+});
+
+app.get('/', function(request, response) {
+  response.render('pages/about');
+});
+
+app.get('/', function(request, response) {
+  response.render('pages/projects');
 });
 
 app.listen(app.get('port'), function() {
