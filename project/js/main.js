@@ -12,9 +12,12 @@ $(document).ready(function(){
   getWeather();
 })
 
-function geatweather(){
-    var url = "https://api.openweathermap.org/data/2.5/weather?q=Paris&appid="+apiKey;
+function getWeather(){
+    var url = "https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&appid="+apiKey;
     $.ajax(url,{success:function(data){
       console.log(data);
+      $(".city").text(data.name);
+      $(".temp").text(data.main.temp);
+      $(".feels").text(data.main.feels_like);
     }})
 }
